@@ -56,7 +56,7 @@ const BackgroundImage = createGlobalStyle`
   body {
     background: url(${HomeImage}) repeat !important;
     background-size: cover !important;
-    background-color: #171923;
+    background-color: #020242;
   }
 `;
 const TITLE = 'bomb.money | Dashboard';
@@ -382,9 +382,39 @@ const spinner = () => {
             </CardContent>
           </Card>
         </Grid>
+        <Grid item xs={12} sm={12}>
+          <Card>
+            <CardContent align="right" style={{ position: 'relative' }}>
+              <h3 style={{ marginBottom: '10px', color : 'white'}}>Current Epoch</h3>
+              <Typography variant='h3'>{Number(currentEpoch)}</Typography><hr />
+              <ProgressCountdown  style={{ position: 'relative', fontSize : '30px'}} base={moment().toDate()} hideBar={true} deadline={to} description="Next Epoch" />
+               Next Epoch in
+               <br></br>
+              Live TWAP : {scalingFactor}<br/>
+              TVL : ${aveta(TVL)}                
+            </CardContent>
+          </Card>
         </Grid>
+        </Grid>
+        
+        
 
           </Box>
+          <Grid xs={12}>
+          <Box sx={{
+        backgroundColor: 'rgba(2, 2, 66, 0.55)',
+        border: 15,
+        borderColor: '#387be0',
+        boxShadow: '0 0 10px #387be0',
+        borderRadius : '10',
+        padding: '50',
+        margin: '200',
+      }}>
+        Box
+      </Box>
+
+          </Grid>
+          
 
     </Page>
   );

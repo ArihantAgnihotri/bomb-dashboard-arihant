@@ -44,7 +44,7 @@ const ProgressCountdown: React.FC<ProgressCountdownProps> = ({base, deadline, hi
 };
 
 const StyledCountdown = styled.p`
-  // font-size: 14px;
+   font-size: 30px;
   font-weight: 700;
   // color: ${(props) => props.theme.color.grey[100]};
   margin: 0 0 6px 0;
@@ -66,10 +66,7 @@ const StyledProgress = styled.div<{progress: number}>`
 
 const StyledCardContentInner = styled.div`
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+ 
   // padding: ${(props) => props.theme.spacing[2]}px ${(props) => props.theme.spacing[4]}px;
 `;
 
