@@ -19,7 +19,13 @@ You can reformat the project by running
 ```shell
 npx prettier --write .
 ```
+## View Deployment
 
+Go to the URL :
+
+```shell
+https://bomb-dashboard-arihant.netlify.app/
+```
 ## Project structure
 
 - **components** contains generic components used inside the application.
@@ -36,3 +42,5 @@ npx prettier --write .
 - Join our [Discord](https://discord.bomb.money) community
 - Or if you are more of a [Telegram Zombie](https://t.me/bombmoneybsc) we have that too
 - Bugs? Use the [Issues](https://github.com/bombmoney/bomb-frontend/issues) section of our github to report them
+
+
