@@ -61,7 +61,8 @@ import TableRow from '@material-ui/core/TableRow';
 
 import {ReactComponent as IconDiscord} from '../../assets/img/discord.svg';
 import {ReactComponent as IconDocs} from '../../assets/img/docs.svg';
-
+import IconBoardroom from '../../assets/img/bomb32.png';
+import IconBshare from '../../assets/img/bshare-200x200.png';
 const BackgroundImage = createGlobalStyle`
   body {
     background: url(${HomeImage}) repeat !important;
@@ -100,7 +101,6 @@ const Dashboard = () => {
   const bShareStats = usebShareStats();
   const tBondStats = useBondStats();
   const bombFinance = useBombFinance();
-
   const buyBombAddress = //'https://app.1inch.io/#/56/swap/BTCB/BOMB';
   //  'https://pancakeswap.finance/swap?inputCurrency=0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c&outputCurrency=' +
   'https://app.bogged.finance/bsc/swap?tokenIn=0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c&tokenOut=0x522348779DCb2911539e76A1042aA922F9C47Ee3';
@@ -249,7 +249,7 @@ const rows = [
 
 
       <Grid container justifyContent="center" spacing={3} style={{color : 'white'}}>
-      <Grid item xs={12} md={6} lg={6} className={classes.gridItem}>
+      <Grid item xs={12} md={8} lg={8} className={classes.gridItem}>
                <div style={{textAlign : 'right', padding : '25px'}}>
                <a className='customLink' href="https://docs.bomb.money/welcome-start-here/strategies"> Read Investment Strategy </a>
                </div>
@@ -263,24 +263,144 @@ const rows = [
                </Grid>
                <Grid item xs={6} md={6} lg={6} className={classes.gridItem}><span><Button style={{width: '100%', 
                backgroundColor: 'rgba(112, 112, 112, 0.40)', 
-               fontSize: '20px'}} variant="contained"><a style={{all : 'unset'}} href='https://docs.bomb.money/welcome-start-here/readme'><IconDocs style={{ marginTop: '5px', 
+               fontSize: '20px'}} variant="conAtained"><a style={{all : 'unset'}} href='https://docs.bomb.money/welcome-start-here/readme'><IconDocs style={{ marginTop: '5px', 
                fill: '#dddfee', 
                height: '30px', width : '30px'}} />Read Docs </a></Button></span>
                </Grid>
+
+
+               <Grid item xs={12} md={12} lg={12} className={classes.gridItem}> 
                <Box sx={{
-          backgroundColor: 'rgba(2, 2, 66, 0.55)',border: 15,borderColor: '#387be0',boxShadow: '0 0 10px #387be0',borderRadius : '10',padding: '30px',marginTop: '20px'}}>
-        This is a box nocap
+         width : '100%',height : '325%', backgroundColor: 'rgba(2, 2, 66, 0.55)',border: 15,borderColor: '#387be0',boxShadow: '0 0 10px #387be0',borderRadius : '10',padding: '10px',marginTop: '20px'}}>
+        <Grid container justifyContent="center" spacing={3} style={{color : 'white'}}>
+        <Grid item xs={8} className={classes.gridItem}>
+              <Grid item xs={12}  className={classes.gridItem}>
+              <Grid container justifyContent="center" spacing={3} style={{color : 'white'}}>
+              <Grid item xs={2} className={classes.gridItem}>
+              <img style={{width: '100%'}} src={IconBshare}></img>
+              </Grid>
+              <Grid item xs={10} className={classes.gridItem}>
+              <Typography variant='h6' style={{width : '100%', color : 'white'}}>Boardroom</Typography>
+              <Typography variant='subtitle4  ' style={{width: '100%', color : 'white'}}>Stake BSHARE and earn BOMB every epoch</Typography>
+              </Grid>
+              </Grid>
+                    </Grid>
+                    <Grid item xs={12} md={12} lg={12} className={classes.gridItem}>
+                    <Grid container justifyContent="center" spacing={3} style={{color : 'white'}}>
+                    <Grid item xs={4} md={4} lg={4} className={classes.gridItem}>
+                    <Typography variant='subtitle4' style={{width: '100%', color : 'white'}}>Daily Returns :</Typography>
+                    <Typography variant='h6' style={{width: '100%', color : 'white'}}>2%</Typography>
+                    </Grid>
+                    <Grid item xs={4} md={4} lg={4} className={classes.gridItem}>
+                    <Typography variant='subtitle4' style={{width: '100%', color : 'white'}}>Your Stake :</Typography>
+                    <Grid container justifyContent="center" spacing={3} style={{color : 'white'}}>
+                    <Grid item xs={2} className={classes.gridItem}>
+                    <img style ={{width :'500%'}}src={IconBshare}></img>
+                    </Grid>
+                    <Grid item xs={10} className={classes.gridItem}>
+                    <Typography variant='subtitle4' style={{width: '100%', color : 'white'}}> &nbsp;&nbsp; {roundAndFormatNumber(stakedBalance)}</Typography><br></br>
+                    <Typography variant='subtitle4' style={{width: '100%', color : 'white'}}> ≈ ${roundAndFormatNumber((stakedBalance * bSharePriceInDollars).toFixed(2), 2)}</Typography>
+                    </Grid>
+                    </Grid>
+                    </Grid>
+                    <Grid item xs={4} md={4} lg={4} className={classes.gridItem}>
+                    <Typography variant='subtitle4' style={{width: '100%', color : 'white'}}>Earned :</Typography>
+                    <Grid container justifyContent="center" spacing={3} style={{color : 'white'}}>
+                    <Grid item xs={2} className={classes.gridItem}>
+                    <img style ={{width :'400%'}}src={IconBoardroom}></img>
+                    </Grid>
+                    <Grid item xs={10} className={classes.gridItem}>
+                    <Typography variant='subtitle4' style={{width: '100%', color : 'white'}}> &nbsp;&nbsp; {roundAndFormatNumber(stakedBalance)}</Typography><br></br>
+                    <Typography variant='subtitle4' style={{width: '100%', color : 'white'}}> ≈ ${roundAndFormatNumber((stakedBalance * bSharePriceInDollars).toFixed(2), 2)}</Typography>
+                    </Grid>
+                    </Grid>
+                    </Grid>
+                    </Grid>
+                    </Grid>
+                    </Grid>
+          <Grid item xs={4} className={classes.gridItem}>
+          <Grid item xs={12} md={12} lg={12} className={classes.gridItem}>
+          <Typography variant='subtitle1' style={{textAlign : 'right', color : 'white', paddingTop : '50px', paddingRight : '50px'}}> TVL : ${aveta(TVL,{digits:7})}</Typography>
+              </Grid>
+              <Grid item xs={12} md={12} lg={12} className={classes.gridItem}>
+              <Grid container justifyContent="center" spacing={3} style={{color : 'white'}}>
+              <Grid item xs={6} md={6} lg={6} className={classes.gridItem}>
+              {!!account && (
+          <Box mt={2}>
+            <Grid container justify="center" spacing={3} mt={10}>
+            <Button style ={{width : '100%'}}
+                href={buyBombAddress}
+                target="_blank"
+                className={'shinyButton ' + classes.button}
+              >
+                Deposit
+              </Button>
+            </Grid>
+          </Box>
+        )}
+              </Grid>
+              <Grid item xs={6} md={6} lg={6} className={classes.gridItem}>
+                    {!!account && (
+          <Box mt={2} style={{marginRight:'8px'}}>
+            <Grid container justify="center" spacing={3} mt={10}>
+              <Button style ={{width :'100%'}}
+
+                disabled={stakedBalance.eq(0) || (!canWithdraw)}
+                onClick={onRedeem}
+                className={
+                  stakedBalance.eq(0) || (!canWithdraw)
+                    ? 'shinyButtonGrey'
+                    : 'shinyButton'
+                }
+              >
+               Withdraw
+              </Button>
+            </Grid>
+          </Box>
+        )}
+              </Grid>
+              <Grid item xs={12} md={12} lg={12} className={classes.gridItem}>
+              {!!account && (
+          <Box style={{marginRight:'8px'}}>
+            <Grid container justify="center" spacing={3}>
+              <Button
+              style={{width:'100%'}}
+                disabled={stakedBalance.eq(0) || ( !canClaimReward)}
+                onClick={onRedeem}
+                className={
+                  stakedBalance.eq(0) || (!canClaimReward)
+                    ? 'shinyButtonDisabledSecondary'
+                    : 'shinyButtonSecondary'
+                }
+              >
+                Claim
+              </Button>
+            </Grid>
+            </Box>
+      
+        )}
+              </Grid>
+              </Grid>
+
+                </Grid>
+              </Grid>
+              </Grid>
+            
+
       </Box>
+      </Grid>
                </Grid>
               </Grid>
-              <Grid item xs={12} md={6} lg={6} className={classes.gridItem}>
+              <Grid item xs={12} md={4} lg={4} className={classes.gridItem}>
               <Box sx={{
-                   backgroundColor: 'rgba(2, 2, 66, 0.55)',border: 15,borderColor: '#387be0',boxShadow: '0 0 10px #387be0',borderRadius : '10',padding: '30px',marginTop: '20px'}}>
+                   backgroundColor: 'rgba(2, 2, 66, 0.55)',border: 15,borderColor: '#387be0',boxShadow: '0 0 10px #387be0',borderRadius : '10',padding: '30px',marginLeft : '20px',marginTop: '20px', height: '600%'}}>
                      Latest News
                   </Box>
               </Grid>
               </Grid>
-
+              
+              
+              
     </PageDashboard>
 
   );
@@ -289,6 +409,24 @@ const rows = [
 export default Dashboard;
 
 /* 
+// Claim and Withdraw button
+{!!account && (
+          <Box mt={5}>
+            <Grid container justify="center" spacing={3} mt={10}>
+              <Button
+                disabled={stakedBalance.eq(0) || (!canWithdraw && !canClaimReward)}
+                onClick={onRedeem}
+                className={
+                  stakedBalance.eq(0) || (!canWithdraw && !canClaimReward)
+                    ? 'shinyButtonDisabledSecondary'
+                    : 'shinyButtonSecondary'
+                }
+              >
+                Claim &amp; Withdraw
+              </Button>
+            </Grid>
+          </Box>
+        )}
       Boilerplate for Glowing Box */
 
 
@@ -362,7 +500,7 @@ export default Dashboard;
 
 
           /* BOMB */
-        /* <Grid item xs={12} sm={4}>
+        /* <Grid item xs={12} sm={2}>
           <Card>
             <CardContent align="center" style={{ position: 'relative' }}>
               <Box mt={2}>
@@ -402,7 +540,7 @@ export default Dashboard;
         </Grid> */
 
         /* BSHARE */
-        /* <Grid item xs={12} sm={4}>
+        /* <Grid item xs={12} sm={2}>
           <Card>
             <CardContent align="center" style={{ position: 'relative' }}>
               <Button
@@ -443,7 +581,7 @@ export default Dashboard;
         </Grid> */
 
         /* BBOND */
-        /* <Grid item xs={12} sm={4}>
+        /* <Grid item xs={12} sm={2}>
           <Card>
             <CardContent align="center" style={{ position: 'relative' }}>
               <Button
