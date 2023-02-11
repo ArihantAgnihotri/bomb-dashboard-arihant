@@ -253,6 +253,10 @@ code {
   font-family: sans-serif;
   text-align: center;
 }
+.customLink{
+  color :rgb(121, 210, 255);
+  font-size: 20px;
+}
 
 .modal__bg {
   position: fixed;
