@@ -11,7 +11,7 @@ import aveta from 'aveta';
 import { Box, Card, CardContent, Button, Typography, Grid } from '@material-ui/core';
 
 import UnlockWallet from '../../components/UnlockWallet';
-import Page from '../../components/Page';
+import PageDashboard from '../../components/PageDashboard';
 
 import useRedeemOnBoardroom from '../../hooks/useRedeemOnBoardroom';
 import useStakedBalanceOnBoardroom from '../../hooks/useStakedBalanceOnBoardroom';
@@ -51,6 +51,16 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { BiLoaderAlt } from 'react-icons/bi';
 import useBombFinance from '../../hooks/useBombFinance';
 
+// MUI TABLE 
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+
+import {ReactComponent as IconDiscord} from '../../assets/img/discord.svg';
+import {ReactComponent as IconDocs} from '../../assets/img/docs.svg';
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -171,16 +181,130 @@ const spinner = () => {
   setVideoLoading(!videoLoading);
 };
 
+
+// Table function 
+function createData(name, currentSupply, totalSupply, price) {
+  return { name, currentSupply, totalSupply, price };
+}
+
+// Table Rows
+const rows = [
+  createData('BOMB', aveta(round(bombCirculatingSupply, 2), {precision :2}), aveta(round(bombTotalSupply, 2), {precision :2}), roundAndFormatNumber(bombPriceInDollars, 2)),
+  createData('BSHARE', aveta(round(bShareCirculatingSupply, 2), {precision :2}), aveta(round(bShareTotalSupply, 2), {precision :2}), roundAndFormatNumber(bSharePriceInDollars, 2)),
+  createData('BBOND', aveta(round(tBondCirculatingSupply, 2), {precision :2}), aveta(round(tBondTotalSupply, 2), {precision :2}), roundAndFormatNumber(tBondPriceInDollars, 2)),
+];
+
   return (
-    <Page>
+    <PageDashboard>
       <BackgroundImage />
       <Helmet>
         <title>{TITLE}</title>
       </Helmet>
-          <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
-            Dashboard
-          </Typography>
-          <Box mt={5}>
+          <Grid xs={12}>
+          <Box sx={{
+        backgroundColor: 'rgba(2, 2, 66, 0.55)',border: 15,borderColor: '#387be0',boxShadow: '0 0 10px #387be0',borderRadius : '10',padding: '30px',margin: '20px',}}>
+           <Typography variant='h4' style={{textAlign : 'center',  color : 'white'}}>BOMB FINANCE SUMMARY</Typography><hr />
+      <div style={{float: 'left', color : 'white'}}>
+      <TableContainer>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell> </TableCell>
+            <TableCell align="right">Current Suply</TableCell>
+            <TableCell align="right">Total Supply</TableCell>
+            <TableCell align="right">Price</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell align="right">{row.currentSupply}</TableCell>
+              <TableCell align="right">{row.totalSupply}</TableCell>
+              <TableCell align="right">$ {row.price}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+      </div>
+      <div style ={{textAlign : 'center',float : 'right', padding: '0', color :'white' }}>
+              <h3 style={{marginBottom: '10px' , color : 'white'}}>Current Epoch</h3>
+              <Typography variant='h3' style={{color : 'white'}}>{Number(currentEpoch)}</Typography><hr />
+              <ProgressCountdown  style={{ position: 'relative', fontSize : '30px'}} base={moment().toDate()} hideBar={true} deadline={to} description="Next Epoch" />
+               Next Epoch in
+               <hr />
+               <Typography variant='subtitle1' style={{color : 'white'}}>Live TWAP :{scalingFactor}</Typography>
+               <Typography variant='subtitle1' style={{color : 'white'}}> TVL : ${aveta(TVL)}</Typography>
+      </div>
+      <div style ={{clear: 'both'}}></div>
+      </Box>
+      </Grid>
+
+
+
+      <Grid container justifyContent="center" spacing={3} style={{color : 'white'}}>
+      <Grid item xs={12} md={6} lg={6} className={classes.gridItem}>
+               <div style={{textAlign : 'right', padding : '25px'}}>
+               <a className='customLink' href="https://docs.bomb.money/welcome-start-here/strategies"> Read Investment Strategy </a>
+               </div>
+               <span><Button style={{width: '100%', backgroundColor: 'rgba(13, 153, 255, 0.40)', fontSize: '20px', color : 'white'}} variant="contained">Invest Now</Button></span>
+               <Grid container justifyContent="center" spacing={3} style={{color : 'white', marginTop : '10px'}}>
+               <Grid item xs={6} md={6} lg={6} className={classes.gridItem}><span><Button style={{width: '100%', 
+               backgroundColor: 'rgba(112, 112, 112, 0.40)', 
+               fontSize: '20px'}} variant="contained"><a style={{all : 'unset'}} href='https://discord.com/invite/94Aa4wSz3e'><IconDiscord style={{ marginTop: '5px', 
+               fill: '#dddfee', 
+               height: '30px', width : '30px'}} />Chat on discord </a></Button></span>
+               </Grid>
+               <Grid item xs={6} md={6} lg={6} className={classes.gridItem}><span><Button style={{width: '100%', 
+               backgroundColor: 'rgba(112, 112, 112, 0.40)', 
+               fontSize: '20px'}} variant="contained"><a style={{all : 'unset'}} href='https://docs.bomb.money/welcome-start-here/readme'><IconDocs style={{ marginTop: '5px', 
+               fill: '#dddfee', 
+               height: '30px', width : '30px'}} />Read Docs </a></Button></span>
+               </Grid>
+               <Box sx={{
+          backgroundColor: 'rgba(2, 2, 66, 0.55)',border: 15,borderColor: '#387be0',boxShadow: '0 0 10px #387be0',borderRadius : '10',padding: '30px',marginTop: '20px'}}>
+        This is a box nocap
+      </Box>
+               </Grid>
+              </Grid>
+              <Grid item xs={12} md={6} lg={6} className={classes.gridItem}>
+              <Box sx={{
+                   backgroundColor: 'rgba(2, 2, 66, 0.55)',border: 15,borderColor: '#387be0',boxShadow: '0 0 10px #387be0',borderRadius : '10',padding: '30px',marginTop: '20px'}}>
+                     Latest News
+                  </Box>
+              </Grid>
+              </Grid>
+
+    </PageDashboard>
+
+  );
+};
+
+export default Dashboard;
+
+/* 
+      Boilerplate for Glowing Box */
+
+
+      /* <Grid xs={12}>
+      <Box sx={{
+        backgroundColor: 'rgba(2, 2, 66, 0.55)',border: 15,borderColor: '#387be0',boxShadow: '0 0 10px #387be0',borderRadius : '10',padding: '30px',marginTop: '20px'}}>
+        This is a box nocap
+      </Box>
+      </Grid> */
+
+
+
+
+
+
+ /* <Box mt={5}>
             <Grid container justifyContent="center" spacing={3}>
               <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
                 <Card className={classes.gridItem}>
@@ -225,47 +349,20 @@ const spinner = () => {
               <Typography style={{ textTransform: 'uppercase', color: '#f9d749' }}>
                       Total value locked 
                     </Typography>
-              {/* <CountUp style={{ fontSize: '25px' }} end={TVL} separator="," prefix="$" /> */}
-              <Typography> $ {aveta(TVL)}</Typography>
+              {/* <CountUp style={{ fontSize: '25px' }} end={TVL} separator="," prefix="$" /> */
+              /* <Typography> $ {aveta(TVL)}</Typography>
               </CardContent>
               </Card>
               </Grid>
             </Grid>
-
-            {/* <Grid container justify="center" spacing={3}>
-            <Grid item xs={4}>
-              <Card>
-                <CardContent align="center">
-                  <Typography>Rewards</Typography>
-
-                </CardContent>
-                <CardActions style={{justifyContent: 'center'}}>
-                  <Button color="primary" variant="outlined">Claim Reward</Button>
-                </CardActions>
-                <CardContent align="center">
-                  <Typography>Claim Countdown</Typography>
-                  <Typography>00:00:00</Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={4}>
-              <Card>
-                <CardContent align="center">
-                  <Typography>Stakings</Typography>
-                  <Typography>{getDisplayBalance(stakedBalance)}</Typography>
-                </CardContent>
-                <CardActions style={{justifyContent: 'center'}}>
-                  <Button>+</Button>
-                  <Button>-</Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          </Grid> */}
           </Box>
           <Box mt={5}>
-          <Grid container justifyContent="center" spacing={3}>
-            {/* BOMB */}
-        <Grid item xs={12} sm={4}>
+          <Grid container justifyContent="center" spacing={3}> */ 
+
+
+
+          /* BOMB */
+        /* <Grid item xs={12} sm={4}>
           <Card>
             <CardContent align="center" style={{ position: 'relative' }}>
               <Box mt={2}>
@@ -302,10 +399,10 @@ const spinner = () => {
               </span>
             </CardContent>
           </Card>
-        </Grid>
+        </Grid> */
 
-        {/* BSHARE */}
-        <Grid item xs={12} sm={4}>
+        /* BSHARE */
+        /* <Grid item xs={12} sm={4}>
           <Card>
             <CardContent align="center" style={{ position: 'relative' }}>
               <Button
@@ -343,10 +440,10 @@ const spinner = () => {
               </span>
             </CardContent>
           </Card>
-        </Grid>
+        </Grid> */
 
-        {/* BBOND */}
-        <Grid item xs={12} sm={4}>
+        /* BBOND */
+        /* <Grid item xs={12} sm={4}>
           <Card>
             <CardContent align="center" style={{ position: 'relative' }}>
               <Button
@@ -383,42 +480,10 @@ const spinner = () => {
           </Card>
         </Grid>
         <Grid item xs={12} sm={12}>
-          <Card>
-            <CardContent align="right" style={{ position: 'relative' }}>
-              <h3 style={{ marginBottom: '10px', color : 'white'}}>Current Epoch</h3>
-              <Typography variant='h3'>{Number(currentEpoch)}</Typography><hr />
-              <ProgressCountdown  style={{ position: 'relative', fontSize : '30px'}} base={moment().toDate()} hideBar={true} deadline={to} description="Next Epoch" />
-               Next Epoch in
-               <br></br>
-              Live TWAP : {scalingFactor}<br/>
-              TVL : ${aveta(TVL)}                
-            </CardContent>
-          </Card>
-        </Grid>
-        </Grid>
-        
-        
-
-          </Box>
-          <Grid xs={12}>
-          <Box sx={{
-        backgroundColor: 'rgba(2, 2, 66, 0.55)',
-        border: 15,
-        borderColor: '#387be0',
-        boxShadow: '0 0 10px #387be0',
-        borderRadius : '10',
-        padding: '50',
-        margin: '200',
-      }}>
-        Box
-      </Box>
-
-          </Grid>
           
+        </Grid>
+        </Grid>
+        
+        
 
-    </Page>
-  );
-};
-
-export default Dashboard;
-// Arihant
+          </Box> */
