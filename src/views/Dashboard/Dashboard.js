@@ -263,7 +263,7 @@ const rows = [
                </Grid>
                <Grid item xs={6} md={6} lg={6} className={classes.gridItem}><span><Button style={{width: '100%', 
                backgroundColor: 'rgba(112, 112, 112, 0.40)', 
-               fontSize: '20px'}} variant="conAtained"><a style={{all : 'unset'}} href='https://docs.bomb.money/welcome-start-here/readme'><IconDocs style={{ marginTop: '5px', 
+               fontSize: '20px'}} variant="contained"><a style={{all : 'unset'}} href='https://docs.bomb.money/welcome-start-here/readme'><IconDocs style={{ marginTop: '5px', 
                fill: '#dddfee', 
                height: '30px', width : '30px'}} />Read Docs </a></Button></span>
                </Grid>
@@ -377,29 +377,32 @@ const rows = [
               </Button>
             </Grid>
             </Box>
-      
         )}
               </Grid>
+              
               </Grid>
-
+              
                 </Grid>
+                
               </Grid>
+              
               </Grid>
             
 
       </Box>
       </Grid>
+      
                </Grid>
+               
               </Grid>
               <Grid item xs={12} md={4} lg={4} className={classes.gridItem}>
               <Box sx={{
-                   backgroundColor: 'rgba(2, 2, 66, 0.55)',border: 15,borderColor: '#387be0',boxShadow: '0 0 10px #387be0',borderRadius : '10',padding: '30px',marginLeft : '20px',marginTop: '20px', height: '600%'}}>
+                   backgroundColor: 'rgba(2, 2, 66, 0.55)',border: 15,borderColor: '#387be0',boxShadow: '0 0 10px #387be0',borderRadius : '10',padding: '30px',marginLeft : '20px',marginTop: '20px', height: '590%'}}>
                      Latest News
                   </Box>
               </Grid>
-              </Grid>
               
-              
+              </Grid>        
               
     </PageDashboard>
 
